@@ -42,3 +42,6 @@ Route::get('/profile',[Userc::class, "Profile"]);
 Route::post('/incprofile',[Userc::class, "incProfile"]);
 Route::get('/offer',[Userc::class, "offer"]);
 Route::get('/getsearch/{press}',[Userc::class, "search"]);
+Route::post('/payment',[Userc::class, "payment"]);
+Route::post('/incaddar',[Userc::class, "getaddress"]);
+Route::post('/pay',[Userc::class, "pay"]);

@@ -4,12 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Razorpay\Api\Api;
+use Session;
 
 // add models
 use App\Models\Catagory;
 use App\Models\Product;
 use App\Models\User;
 use App\Models\Cart;
+use App\Models\Payment;
+use App\Models\Order;
 
 class Userc extends Controller
 {
@@ -30,7 +34,7 @@ class Userc extends Controller
     }
     public function Product(){
         $obj2 = Catagory::where("pid","=",0)->get();
-        $obj = Product::all();
+        $obj = Product::where("product_quantity",">",0)->get();
       
         return view("product")->with(['product'=>$obj,'catagory'=>$obj2]);
     }
@@ -42,7 +46,7 @@ class Userc extends Controller
 
         // SELECT * FROM products WHERE p_catagory_id = (SELECT cat_id FROM catagoris WHERE cname = "Cookware");
         
-        $obj = Product::all();
+        $obj = Product::where("product_quantity",">",0)->get();
         return view("product")->with(['product'=>$obj,'catagory'=>$obj2]);
     }
     public function cart(){
@@ -118,7 +122,8 @@ class Userc extends Controller
     public function Profile(){
         $obj = Catagory::where("pid","=",0)->get();
         $obj2 = Auth::user();
-        return view("profile")->with(['catagory'=>$obj,'user'=>$obj2]);
+        $obj3 = Order::join("products","orders.product_id","=","products.p_id")->where("orders.user_id","=",Auth::user()->id)->get(['orders.*','products.p_name']);
+        return view("profile")->with(['catagory'=>$obj,'user'=>$obj2,'order'=>$obj3]);
     }
 
     public function incProfile(Request $r){
@@ -156,5 +161,63 @@ class Userc extends Controller
     //     // return $obj->name;
     //     return $obj;
     // }
+
+
+    public function payment(Request $r){
+        $amount = $r->amount;
+        $obj = Catagory::where("pid","=",0)->get();
+        $uid = Auth::user()->id;
+        $obj2 = Cart::join('products','cart.product_id','=','products.p_id')->where("cart.user_id","=",$uid)
+            ->get(['products.*','cart.*']);
+        $api = new Api('rzp_test_Hkd4fncpEeGIv1', 'JDJyVHwwmsAlgxJFJ4rcikmV');
+        $order = $api->order->create(array('receipt' => '123', 'amount' => $amount * 100, 'currency' => 'INR'));
+        $orderid = $order['id'];
+        if(Auth::user()->address != ""){
+            $paym = new Payment();
+            $paym->user_id = $uid;
+            $paym->payment_id = $orderid;
+            $paym->save();
+        }
+
+        Session::put('order_id', $orderid);
+        Session::put('amount', $amount);
+        return view("payment")->with(['catagory'=>$obj,'data'=>$obj2]);
+    }
+    public function pay(Request $r){
+        $data = $r->all();
+        $user = Payment::where('payment_id', $data['razorpay_order_id'])->first();
+        $user->payment_done = true;
+        $user->rezorpay_id = $data['razorpay_payment_id'];
+        $user->save();
+
+
+        $cart = Cart::where("user_id","=",Auth::user()->id)->get();
+        foreach($cart as $c){
+            $obj = new Order();
+            $obj->user_id = $c->user_id;
+            $obj->product_id = $c->product_id;
+            $obj->product_price = $c->product_price;
+            $obj->product_quantity = $c->product_quantity;
+            $obj->save();
+
+            $obje = Cart::find($c->crt_id);
+            $obje->delete();
+
+            $prod = Product::find($c->product_id);
+            $prod->product_quantity -= $c->product_quantity;
+            $prod->update();
+        }
+        return redirect(url('/'));
+    }
+    public function getaddress(Request $r){
+        $id = $r->id;
+        $obj = User::find($id);
+        $obj->name = $r->name;
+        $obj->email = $r->email;
+        $obj->address = $r->address;
+        $obj->phone = $r->pnum;
+        $obj->update();
+        return redirect(url('/cart'));
+    }
 
 }

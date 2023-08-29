@@ -99,6 +99,7 @@
 								});
 						   </script>
 						</td>
+						
 					</tr>
 					@endforeach
 					
@@ -118,17 +119,32 @@
 				</table>
 			</div>
 			<div class="checkout-left">	
+				@php 
+					$ans = 0
+				@endphp
+				@foreach($cart as $cr)
+					@php $ans += ($cr->product_price) @endphp
+				@endforeach
+				@php
+					$ans += (5*count($cart))
+				@endphp
 				<div class="checkout-left-basket">
-					<h4>Continue to basket</h4>
+					<form action="{{url('/payment')}}" method="post">
+						@csrf
+						<input type="hidden" name="amount" value="{{$ans}}">
+						<input type="hidden" name="uid" value="{{Auth::user()->id}}">
+						@if($ans != 0)
+						<input type="submit" value="Continue to basket">
+						@endif
+						@if($ans == 0)
+						<input type="submit" value="Continue to basket" disabled>
+						@endif
+					</form>
+					<!-- <a href="/payment"><h4>Continue to basket</h4></a> -->
 					<ul>
 						@foreach($cart as $c)
 						<li>{{$c->p_name}} <i>:</i> 
-							@if($c->p_offer_price > 0)
-							<span>{{$c->p_offer_price}} </span>
-							@endif
-							@if(!$c->p_offer_price > 0)
 							<span>{{$c->product_price}} </span>
-							@endif
 						</li>
 						@endforeach
 						<li>Total Service Charges <i>-</i> <span>@php echo 5*count($cart) @endphp</span></li>
@@ -136,19 +152,8 @@
 						<li id="childn">
 							Total <i>-</i> 
 							<span>
-								@php 
-									$ans = 0
-								@endphp
-								@foreach($cart as $cr)
-									@if($cr->p_offer_price > 0)
-										@php $ans += $cr->p_offer_price @endphp
-									@endif
-									@if(!$cr->p_offer_price > 0)
-										@php $ans += $cr->product_price @endphp
-									@endif
-								@endforeach
 								@php
-									echo $ans + (5*count($cart))
+									echo $ans
 								@endphp
 							</span>
 						</li>

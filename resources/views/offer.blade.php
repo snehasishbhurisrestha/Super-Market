@@ -72,7 +72,7 @@
 									<figure >
 										<div class="snipcart-item block">
 											<div class="snipcart-thumb" onclick="modal({{$p->p_id}})">
-												<a><img title=" " alt=" " src="{{url('product_images')}}/{{$p->p_image}}"></a>		
+												<a><img title=" " alt=" " src="{{url('product_images')}}/{{$p->p_image}}" style="width:200px;"></a>		
 												<p>{{$p->p_name}}</p>
 												<p style="margin-top:0;">
 													@php
@@ -87,7 +87,7 @@
 													@endfor
 												</p>
 												@if($p->p_offer_price > 0)
-												<h4>₹{{$p->p_price - $p->p_offer_price}} <span>₹{{$p->p_price}}</span></h4>
+												<h4>₹{{$p->p_offer_price}} <span>₹{{$p->p_price}}</span></h4>
 												@endif
 												@if($p->p_offer_price <= 0)
 												<h4>₹{{$p->p_price}} <span></span></h4>
@@ -98,7 +98,12 @@
 													@csrf
 													<fieldset>
 														<input type="hidden" name="pid" value="{{$p->p_id}}">
+														@if($p->p_offer_price > 0)
+														<input type="hidden" name="amount" value="{{$p->p_offer_price}}">
+														@endif
+														@if($p->p_offer_price <= 0)
 														<input type="hidden" name="amount" value="{{$p->p_price}}">
+														@endif
 														<input type="hidden" name="uid" value="{{Auth::user()->id}}">
 														<input type="hidden" name="quantity" value="1">
 														<input type="submit" name="submit" value="Add to cart" class="button">
@@ -119,9 +124,9 @@
 
                                                 <!-- Modal body -->
                                                 <div class="modal-body" style="display:flex;">
-													<div class="image" style="display:flex;"><img title=" " alt=" " src="{{url('product_images')}}/{{$p->p_image}}"></div>
+													<div class="image" style="display:flex;"><img title=" " alt=" " src="{{url('product_images')}}/{{$p->p_image}}" style="width:200px;"></div>
 													<div class="des">
-														{!! $p->p_deacription !!}
+														{!! $p->p_description !!}
 														<div class="stars">
 														@php
 															$ret = $p->p_rating;

@@ -12,19 +12,19 @@
 			<div class="col-md-3 w3_footer_grid">
 				<h3>Information</h3>
 				<ul class="info"> 
-					<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="about.html">About Us</a></li>
+					<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="#">About Us</a></li>
 					<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="/contact">Contact Us</a></li>
-					<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="faq.html">FAQ's</a></li>
+					<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="#">FAQ's</a></li>
 					<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="/offer">Offer Products</a></li>
 				</ul>
 			</div>
 			<div class="col-md-3 w3_footer_grid">
 				<h3>Category</h3>
 				<ul class="info"> 
-					<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="groceries.html">Groceries</a></li>
-					<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="household.html">Household</a></li>
-					<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="personalcare.html">Personal Care</a></li>
-					<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="packagedfoods.html">Packaged Foods</a></li>
+					<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="/product">Groceries</a></li>
+					<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="/product">Household</a></li>
+					<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="/product">Personal Care</a></li>
+					<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="/product">Packaged Foods</a></li>
 				</ul>
 			</div>
 			<div class="col-md-3 w3_footer_grid">
@@ -41,7 +41,7 @@
 	</div>
 	<div class="footer-copy">
 		<div class="container">
-			<p>© 2023 Super Market. All rights reserved | Design by <a href="">Snehasish Bhurisrestha</a></p>
+			<p>© 2023 Super Market. All rights reserved | Design by <a href="https://www.linkedin.com/in/snehasish-bhurisrestha">Snehasish Bhurisrestha</a></p>
 		</div>
 	</div>
 </div>	

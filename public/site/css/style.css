@@ -1183,7 +1183,7 @@ td.invert-image a img {
     margin-left: 0;
 }
 /*-- quantity-end --*/
-.checkout-left-basket h4{
+.checkout-left-basket input[type="submit"]{
 	padding: 1em;
     background:#3399cc;
     font-size: 1.1em;
@@ -1191,6 +1191,8 @@ td.invert-image a img {
     text-transform: uppercase;
     text-align: center;
     margin: 0 0 1em;
+    outline: none;
+    border: none;
 }
 .checkout-left {
     margin: 2em 0 0;

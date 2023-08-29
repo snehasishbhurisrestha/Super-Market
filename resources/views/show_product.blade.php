@@ -68,7 +68,12 @@
                                 <td>{{$d->p_description}}</td>
                                 <td>{{$d->p_rating}}</td>
                                 <td>{{$d->p_offer_price}}</td>
+                                @if($d->product_quantity > $d->low_stock_threshold)
                                 <td><span style="color:green!important;font-weight: bold;">{{$d->stock_status}}</span>({{$d->product_quantity}})</td>
+                                @endif
+                                @if($d->product_quantity <= $d->low_stock_threshold)
+                                <td><span style="color:red!important;font-weight: bold;">You Reached the threshold limit</span>({{$d->product_quantity}})</td>
+                                @endif
                                 <td><img src="{{url('product_images')}}/{{$d->p_image}}" style="width:100px;"></td>
                                 <td><a class="btn" style="background:#fd7e14; color:#fff;" href="/add_product"><i class="fa-solid fa-plus"></i></a></td>
                                 <td><a class="btn btn-success" href="{{url('/productedit')}}/{{$d->p_id}}"><i class="fa-regular fa-pen-to-square"></i></a></td>

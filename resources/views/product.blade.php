@@ -98,7 +98,12 @@
 													@csrf
 													<fieldset>
 														<input type="hidden" name="pid" value="{{$p->p_id}}">
+														@if($p->p_offer_price > 0)
+														<input type="hidden" name="amount" value="{{$p->p_offer_price}}">
+														@endif
+														@if($p->p_offer_price <= 0)
 														<input type="hidden" name="amount" value="{{$p->p_price}}">
+														@endif
 														<input type="hidden" name="uid" value="{{Auth::user()->id}}">
 														<input type="hidden" name="quantity" value="1">
 														<input type="submit" name="submit" value="Add to cart" class="button">

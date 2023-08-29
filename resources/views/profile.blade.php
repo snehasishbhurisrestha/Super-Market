@@ -46,41 +46,12 @@
     <br><br>
     <div class="row">
   		<div class="col-sm-3"><!--left col-->
-              
-
-      
-
-               
-          <!-- <div class="panel panel-default"> -->
-            <!-- <div class="panel-heading">Website <i class="fa fa-link fa-1x"></i></div>
-            <div class="panel-body"><a href="http://bootnipets.com">bootnipets.com</a></div> -->
-          <!-- </div> -->
-          
-          
-          <!-- <ul class="list-group"> -->
-            <!-- <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li> -->
-            <!-- <li class="list-group-item text-right"><span class="pull-left"><strong>Shares</strong></span> 125</li> -->
-            <!-- <li class="list-group-item text-right"><span class="pull-left"><strong>Likes</strong></span> 13</li> -->
-            <!-- <li class="list-group-item text-right"><span class="pull-left"><strong>Posts</strong></span> 37</li> -->
-            <!-- <li class="list-group-item text-right"><span class="pull-left"><strong>Followers</strong></span> 78</li> -->
-          <!-- </ul>  -->
-               
-          <!-- <div class="panel panel-default"> -->
-            <!-- <div class="panel-heading">Social Media</div> -->
-            <!-- <div class="panel-body"> -->
-            	<!-- <i class="fa fa-facebook fa-2x"></i> <i class="fa fa-github fa-2x"></i> <i class="fa fa-twitter fa-2x"></i> <i class="fa fa-pinterest fa-2x"></i> <i class="fa fa-google-plus fa-2x"></i> -->
-            <!-- </div> -->
-          <!-- </div> -->
           
         </div><!--/col-3-->
     	<div class="col-sm-12">
             <ul class="nav nav-tabs">
-                <!-- <li class="active"><a data-toggle="tab" href="#home">Home</a></li> -->
-                <!-- <li><a data-toggle="tab" href="#messages">Menu 1</a></li> -->
-                <!-- <li><a data-toggle="tab" href="#settings">Menu 2</a></li> -->
-              </ul>
+            </ul>
 
-              
         <div class="tab-content">
             <div class="tab-pane active" id="home">
                 <hr>
@@ -89,7 +60,7 @@
                         <input type="hidden" name="id" value="{{$user->id}}">
                         <div class="text-center">
                             @if(Auth::user()->image)
-                                <img src="{{url('profile_images')}}/{{$user->image}}" class="avatar img-circle img-thumbnail" alt="avatar">
+                                <img src="{{url('profile_images')}}/{{$user->image}}" style="width:300px;" class="avatar img-circle img-thumbnail" alt="avatar">
                             @endif
                             @if(!Auth::user()->image)
                             <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
@@ -136,8 +107,32 @@
 
         </div><!--/col-9-->
     </div><!--/row-->
-    </div>
-    <br><br>
+</div>
+<br><br>
+<div class="container">
+    <h2 style="text-align:center;padding:20px 0;">Orders</h2>           
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Payment</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($order as $o)
+            <tr>
+                <td>{{$o->p_name}}</td>
+                <td>{{$o->product_price}}</td>
+                <td>{{$o->product_quantity}}</td>
+                <td style="color:green;font-weight: bold;">Successful</td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
+<br><br>
 <!-- //footer -->
     @include("site_inc/footer")
 <!-- //footer -->	
