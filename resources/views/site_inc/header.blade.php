@@ -45,7 +45,7 @@
 		</div>
 		<div class="w3l_search">
 			<form action="#" method="post">
-				<input type="search" name="Search" placeholder="Search for a Product..." required="">
+				<input type="search" name="Search" onkeyup="search(this.value)" placeholder="Search for a Product..." required>
 				<button type="submit" class="btn btn-default search" aria-label="Left Align">
 					<i class="fa fa-search" aria-hidden="true"> </i>
 				</button>
@@ -112,5 +112,17 @@
 				});
 			}
 		})
+	}
+
+	function search(press){
+		// alert(press)
+		// $.ajax({
+		// 	url:'/getsearch/'+press,
+		// 	type:'GET',
+		// 	data: {},
+		// 	success:function(resp){
+		// 		alert(resp);
+		// 	}
+		// })
 	}
 </script>

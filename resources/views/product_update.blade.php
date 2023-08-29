@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Blank</title>
+    <title>Product Update | Market Admin</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{ url('dash/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
@@ -67,7 +67,7 @@
                         </div>
                         <div class="form-group">
                             <label for="des">Product Description</label>
-                            <textarea name="des" id="des">{{$data->p_deacription}}</textarea>
+                            <textarea name="des" id="des">{{$data->p_description}}</textarea>
                         </div>
                         <div class="form-group">
                             <label for="des" class="pr-5">Product Rating</label>
@@ -96,6 +96,27 @@
                                     <input type="radio" @if($data->p_rating == 5) checked @endif class="form-check-input" name="rate" value="5">5
                                 </label>
                             </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="des" class="pr-5">Stock Status</label>
+                            <div class="form-check-inline">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" @if($data->stock_status == "In stock") checked @endif name="stat" value="In stock">In stock
+                                </label>
+                            </div>
+                            <div class="form-check-inline">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" @if($data->stock_status == "Out of stock") checked @endif name="stat" value="Out of stock">Out of stock
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Quantity">Product Quantity</label>
+                            <input type="number" name="pquantity" value="{{$data->product_quantity}}" class="form-control" placeholder="Enter product Quantity" id="Quantity" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="threshold">Low stock threshold</label>
+                            <input type="number" name="threshold" value="{{$data->low_stock_threshold}}" class="form-control" placeholder="Store-wide threshold (2)" id="threshold" required>
                         </div>
                         <div class="form-group">
                             <label for="customFile">Product Image</label>

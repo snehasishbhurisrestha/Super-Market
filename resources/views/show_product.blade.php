@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Blank</title>
+    <title>Product | Market Admin</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{ url('dash/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
@@ -52,6 +52,7 @@
                                 <th>Product Description</th>
                                 <th>Product Rating</th>
                                 <th>Product Offer Price</th>
+                                <th>Stock</th>
                                 <th>Product Image</th>
                                 <th>Add</th>
                                 <th>Update</th>
@@ -64,10 +65,11 @@
                                 <td>{{$d->name}}</td>
                                 <td>{{$d->p_name}}</td>
                                 <td>{{$d->p_price}}</td>
-                                <td>{{$d->p_deacription}}</td>
+                                <td>{{$d->p_description}}</td>
                                 <td>{{$d->p_rating}}</td>
                                 <td>{{$d->p_offer_price}}</td>
-                                <td><img src="{{url('product_images')}}/{{$d->p_image}}"></td>
+                                <td><span style="color:green!important;font-weight: bold;">{{$d->stock_status}}</span>({{$d->product_quantity}})</td>
+                                <td><img src="{{url('product_images')}}/{{$d->p_image}}" style="width:100px;"></td>
                                 <td><a class="btn" style="background:#fd7e14; color:#fff;" href="/add_product"><i class="fa-solid fa-plus"></i></a></td>
                                 <td><a class="btn btn-success" href="{{url('/productedit')}}/{{$d->p_id}}"><i class="fa-regular fa-pen-to-square"></i></a></td>
                                 <td><a onclick="return confirm('Are you sure?')" class="btn btn-danger" href="{{url('/productdel')}}/{{$d->p_id}}"><i class="fa-regular fa-trash-can"></i></a></td>

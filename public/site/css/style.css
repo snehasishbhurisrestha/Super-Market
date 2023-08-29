@@ -1203,7 +1203,7 @@ td.invert-image a img {
 }
 .checkout-left-basket {
     float: left;
-    width: 25%;
+    /* width: 25%; */
 }
 .checkout-right-basket{
 	float: right;
@@ -1212,7 +1212,7 @@ td.invert-image a img {
 .checkout-left-basket ul li span {
     float: right;
 }
-.checkout-left-basket ul li:nth-child(5) {
+#childn {
     font-size: 1em;
     color: #212121;
     font-weight: 600;

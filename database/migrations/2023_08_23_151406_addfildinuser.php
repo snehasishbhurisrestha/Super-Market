@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::table("users",function(Blueprint $b){
             $b->string("phone")->after("email_verified_at");
-            $b->string("address")->after("email_verified_at")->nullable();
-            $b->string("role")->after("email_verified_at");
+            $b->string("address")->after("phone")->nullable();
+            $b->string("role")->after("address");
+            $b->string("image")->after("password")->nullable();
         });
     }
 

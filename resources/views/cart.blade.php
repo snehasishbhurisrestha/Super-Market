@@ -80,7 +80,12 @@
 							</div>
 						</td>
 						<td class="invert">{{$c->p_name}}</td>
-						<td class="invert">{{$c->product_price - $c->p_offer_price}}</td>
+						@if($c->p_offer_price > 0)
+						<td class="invert">{{$c->p_offer_price}}</td>
+						@endif
+						@if(!$c->p_offer_price > 0)
+						<td class="invert">{{$c->product_price}}</td>
+						@endif
 						<td class="invert">
 							<div class="rem">
 								<a href="{{url('/deltocart')}}/{{$c->crt_id}}"><div class="close1"> </div></a>
@@ -117,18 +122,31 @@
 					<h4>Continue to basket</h4>
 					<ul>
 						@foreach($cart as $c)
-						<li>{{$c->p_name}} <i>-</i> <span>{{$c->product_price - $c->p_offer_price}} </span></li>
+						<li>{{$c->p_name}} <i>:</i> 
+							@if($c->p_offer_price > 0)
+							<span>{{$c->p_offer_price}} </span>
+							@endif
+							@if(!$c->p_offer_price > 0)
+							<span>{{$c->product_price}} </span>
+							@endif
+						</li>
 						@endforeach
 						<li>Total Service Charges <i>-</i> <span>@php echo 5*count($cart) @endphp</span></li>
-						<li>
+						
+						<li id="childn">
 							Total <i>-</i> 
 							<span>
 								@php 
 									$ans = 0
 								@endphp
-									@foreach($cart as $cr)
-										@php $ans += ($cr->product_price - $cr->p_offer_price) @endphp
-									@endforeach
+								@foreach($cart as $cr)
+									@if($cr->p_offer_price > 0)
+										@php $ans += $cr->p_offer_price @endphp
+									@endif
+									@if(!$cr->p_offer_price > 0)
+										@php $ans += $cr->product_price @endphp
+									@endif
+								@endforeach
 								@php
 									echo $ans + (5*count($cart))
 								@endphp

@@ -71,6 +71,7 @@ class Userc extends Controller
         $obj->name = $n;
         $obj->email = $email;
         $obj->role = "User";
+        // $obj->role = "Admin";
         $obj->phone = $phone;
         $obj->password = bcrypt($pass);
         $obj->save();
@@ -147,5 +148,13 @@ class Userc extends Controller
         $obj2 = Product::where("p_offer_price",">",0)->get();
         return view("offer")->with(['catagory'=>$obj, 'product'=>$obj2]);
     }
+
+    // public function search(Request $r){
+    //     $p = $r->press;
+    //     // $obj = Product::where("p_name","like","%".$p."%")->get();
+    //     $obj = Product::where("p_name","=","Madhur Sugar - Refined, 1 kg Pouch")->get();
+    //     // return $obj->name;
+    //     return $obj;
+    // }
 
 }

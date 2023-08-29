@@ -71,6 +71,11 @@ class Admin extends Controller
         $poffer = $r->poffer;
         $des = $r->des;
         $rate = $r->rate;
+
+        $stat = $r->stat;
+        $pquantity = $r->pquantity;
+        $threshold = $r->threshold;
+
         $img = $r->file("img");
         if(isset($img)){
             $img_name = $img->getClientOriginalName();
@@ -83,9 +88,12 @@ class Admin extends Controller
         $obj->p_catagory_id = $pcid;
         $obj->p_name = $n;
         $obj->p_price = $pprice;
-        $obj->p_deacription = $des;
+        $obj->p_description = $des;
         $obj->p_rating = $rate;
         $obj->p_offer_price = $poffer;
+        $obj->stock_status = $stat;
+        $obj->product_quantity = $pquantity;
+        $obj->low_stock_threshold = $threshold;
         $obj->p_image = $img_name;
         $obj->save();
         return redirect(url('/show_product'));
@@ -111,6 +119,9 @@ class Admin extends Controller
         $poffer = $r->poffer;
         $des = $r->des;
         $rate = $r->rate;
+        $stat = $r->stat;
+        $pquantity = $r->pquantity;
+        $threshold = $r->threshold;
         $img = $r->file("img");
         
         $obj = Product::find($id);
@@ -125,9 +136,12 @@ class Admin extends Controller
         $obj->p_catagory_id = $pcid;
         $obj->p_name = $n;
         $obj->p_price = $pprice;
-        $obj->p_deacription = $des;
+        $obj->p_description = $des;
         $obj->p_rating = $rate;
         $obj->p_offer_price = $poffer;
+        $obj->stock_status = $stat;
+        $obj->product_quantity = $pquantity;
+        $obj->low_stock_threshold = $threshold;
         $obj->p_image = $img_name;
         $obj->update();
         return redirect(url('/show_product'));

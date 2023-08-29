@@ -19,6 +19,9 @@ return new class extends Migration
             $t->string("p_description");
             $t->integer("p_rating");
             $t->string("p_offer_price");
+            $t->string("stock_status")->nullable();
+            $t->string("product_quantity");
+            $t->string("low_stock_threshold");
             $t->string("p_image");
             $t->timestamps();
         });

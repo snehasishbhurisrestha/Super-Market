@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Blank</title>
+    <title>Add Product | Market Admin</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{ url('dash/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
@@ -56,15 +56,15 @@
                         </div>
                         <div class="form-group">
                             <label for="name">Product Name</label>
-                            <input type="text" name="pname" class="form-control" placeholder="Enter product name" id="name">
+                            <input type="text" name="pname" class="form-control" placeholder="Enter product name" id="name" required>
                         </div>
                         <div class="form-group">
                             <label for="price">Product Price</label>
-                            <input type="number" name="pprice" class="form-control" placeholder="Enter product price" id="price">
+                            <input type="number" name="pprice" class="form-control" placeholder="Enter product price" id="price" required>
                         </div>
                         <div class="form-group">
                             <label for="price">Product Offer Price</label>
-                            <input type="number" name="poffer" class="form-control" placeholder="Enter product price" value="0" id="price">
+                            <input type="number" name="poffer" class="form-control" placeholder="Enter product price" value="0" id="price" required>
                         </div>
                         <div class="form-group">
                             <label for="des">Product Description</label>
@@ -99,9 +99,30 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label for="des" class="pr-5">Stock Status</label>
+                            <div class="form-check-inline">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="stat" value="In stock" checked>In stock
+                                </label>
+                            </div>
+                            <div class="form-check-inline">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="stat" value="Out of stock">Out of stock
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Quantity">Product Quantity</label>
+                            <input type="number" name="pquantity" class="form-control" placeholder="Enter product Quantity" id="Quantity" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="threshold">Low stock threshold</label>
+                            <input type="number" name="threshold" class="form-control" placeholder="Store-wide threshold (2)" id="threshold" required>
+                        </div>
+                        <div class="form-group">
                             <label for="customFile">Product Image</label>
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="customFile" name="img">
+                                <input type="file" class="custom-file-input" id="customFile" name="img" required>
                                 <label class="custom-file-label" for="customFile">Choose file</label>
                             </div>
                         </div>
