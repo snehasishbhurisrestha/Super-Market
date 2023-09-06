@@ -103,11 +103,11 @@ class Userc extends Controller
 
     public function Add_to_Cart(Request $r){
         $obj = new Cart();
-
+        $q = $r->quantity;
         $obj->product_id = $r->pid;
         $obj->user_id = $r->uid;
-        $obj->product_price = $r->amount;
-        $obj->product_quantity = $r->quantity;
+        $obj->product_price = $r->amount * $q;
+        $obj->product_quantity = $q;
         $obj->save();
         return redirect(url('/cart'));
     }
@@ -122,7 +122,7 @@ class Userc extends Controller
     public function Profile(){
         $obj = Catagory::where("pid","=",0)->get();
         $obj2 = Auth::user();
-        $obj3 = Order::join("products","orders.product_id","=","products.p_id")->where("orders.user_id","=",Auth::user()->id)->get(['orders.*','products.p_name']);
+        $obj3 = Order::join("products","orders.product_id","=","products.p_id")->where("orders.user_id","=",Auth::user()->id)->get(['orders.*','products.p_name','products.p_image']);
         return view("profile")->with(['catagory'=>$obj,'user'=>$obj2,'order'=>$obj3]);
     }
 

@@ -105,7 +105,7 @@
 														<input type="hidden" name="amount" value="{{$p->p_price}}">
 														@endif
 														<input type="hidden" name="uid" value="{{Auth::user()->id}}">
-														<input type="hidden" name="quantity" value="1">
+														<input type="number" name="quantity" value="1" min="1" class="num">
 														<input type="submit" name="submit" value="Add to cart" class="button">
 													</fieldset>
 												</form>

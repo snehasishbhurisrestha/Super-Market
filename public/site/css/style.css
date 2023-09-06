@@ -408,6 +408,23 @@ ul.multi-column-dropdown h6 {
     padding: .5em 0;
     outline: none;
 }
+
+.snipcart-details input.num {
+    font-size: 14px;
+    margin-bottom: 10px;
+    text-align: center;
+    /* color: #fff; */
+    /* background: #3399cc; */
+    text-decoration: none;
+    position: relative;
+    /* border: none; */
+    border-radius: 0;
+    width: 100%;
+    text-transform: uppercase;
+    padding: .5em 0;
+    /* outline: none; */
+}
+
 .agile_top_brand_left_grid:hover .snipcart-details input.button,.snipcart-details input.button:hover{
     background: #fe9126;
 }

@@ -114,7 +114,7 @@
     <table class="table table-hover">
         <thead>
             <tr>
-                <th>Product Name</th>
+                <th>Product</th>
                 <th>Price</th>
                 <th>Quantity</th>
                 <th>Payment</th>
@@ -123,7 +123,7 @@
         <tbody>
             @foreach($order as $o)
             <tr>
-                <td>{{$o->p_name}}</td>
+                <td><img src="{{url('product_images')}}/{{$o->p_image}}" style="width:100px">{{$o->p_name}}</td>
                 <td>{{$o->product_price}}</td>
                 <td>{{$o->product_quantity}}</td>
                 <td style="color:green;font-weight: bold;">Successful</td>

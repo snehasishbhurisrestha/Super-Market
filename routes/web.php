@@ -40,7 +40,7 @@ Route::post('/addtocart',[Userc::class, "Add_to_Cart"]);
 Route::get('/deltocart/{id}',[Userc::class, "Del_to_Cart"]);
 Route::get('/profile',[Userc::class, "Profile"]);
 Route::post('/incprofile',[Userc::class, "incProfile"]);
-Route::get('/offer',[Userc::class, "offer"]);
+Route::get('/offer',[Userc::class, "offer"])->middleware("auth");
 Route::get('/getsearch/{press}',[Userc::class, "search"]);
 Route::post('/payment',[Userc::class, "payment"]);
 Route::post('/incaddar',[Userc::class, "getaddress"]);

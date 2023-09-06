@@ -70,22 +70,9 @@
 					<tr class="rem1">
 						<!-- <td class="invert"></td> -->
 						<td class="invert-image"><a href="single.html"><img src="{{url('product_images')}}/{{$c->p_image}}" alt=" " class="img-responsive" /></a></td>
-						<td class="invert">
-							 <div class="quantity"> 
-								<div class="quantity-select">                           
-									<div class="entry value-minus">&nbsp;</div>
-									<div class="entry value"><span>1</span></div>
-									<div class="entry value-plus active">&nbsp;</div>
-								</div>
-							</div>
-						</td>
+						<td class="invert">{{$c->product_quantity}}</td>
 						<td class="invert">{{$c->p_name}}</td>
-						@if($c->p_offer_price > 0)
-						<td class="invert">{{$c->p_offer_price}}</td>
-						@endif
-						@if(!$c->p_offer_price > 0)
 						<td class="invert">{{$c->product_price}}</td>
-						@endif
 						<td class="invert">
 							<div class="rem">
 								<a href="{{url('/deltocart')}}/{{$c->crt_id}}"><div class="close1"> </div></a>
